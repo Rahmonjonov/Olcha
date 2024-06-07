@@ -149,6 +149,9 @@ def product_add(request):
             body_price=data.get('body_price'),
             price=data.get('price'),
             amount=data.get('amount'),
+            image=data.get('image'),
+            amount_two=data.get('amount_two'),
+            measure=data.get('measure'),
         )
         return Response({"Messages": 'Success'}, status=status.HTTP_201_CREATED)
     except Exception:
@@ -156,6 +159,7 @@ def product_add(request):
 
 @swagger_auto_schema(method='put', request_body=ProductADDSerializer, tags=['Product'])
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def product_change(request, id):
     data = request.data
     Products.objects.filter(id=id).update(
@@ -165,11 +169,15 @@ def product_change(request, id):
         body_price=data.get('body_price'),
         price=data.get('price'),
         amount=data.get('amount'),
+        image=data.get('image'),
+        amount_two=data.get('amount_two'),
+        measure=data.get('measure'),
     )
     return Response({"Messages": 'Success'}, status=status.HTTP_200_OK)
 
-@swagger_auto_schema(method='put', tags=['Product'])
-@api_view(['PUT'])
+@swagger_auto_schema(method='delete', tags=['Product'])
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def product_del(request, id):
     Products.objects.get(id=id).delete()
     return Response({"Messages": 'Success'}, status=status.HTTP_200_OK)

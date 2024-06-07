@@ -40,6 +40,10 @@ class Products(models.Model):
     body_price = models.FloatField(default=0)
     price = models.FloatField(default=0)
     amount = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='products', blank=True, null=True)
+    amount_two =models.IntegerField(default=0)
+    measure = models.CharField(max_length=255, blank=True, null=True)
+    
 
 class Customer(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)

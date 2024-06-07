@@ -68,6 +68,9 @@ class ProductADDSerializer(serializers.Serializer):
     body_price = serializers.FloatField()
     price = serializers.FloatField()
     amount = serializers.IntegerField()
+    image = serializers.ImageField()
+    amount_two = serializers.IntegerField()
+    measure = serializers.CharField(max_length=255)
 
 class CustomerSerializer(ModelSerializer):
 
